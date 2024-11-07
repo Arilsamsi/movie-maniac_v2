@@ -23,6 +23,7 @@
           />
           <div class="movie-info">
             <h3>{{ movie.title }}</h3>
+            <p>{{ movie.release_date }}</p>
             <span class="rating">⭐ {{ movie.vote_average }}</span>
           </div>
         </div>

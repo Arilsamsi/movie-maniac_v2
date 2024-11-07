@@ -6,6 +6,7 @@ const baseUrl = import.meta.env.VITE_BASEURL;
 export const getMovieList = async () => {
   const movie = await axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}`);
   return movie.data.results;
+  // console.log(movie);
 };
 
 export const getMovieListTopRated = async () => {
@@ -16,6 +17,7 @@ export const getMovieListTopRated = async () => {
 export const getMovieListUpcoming = async () => {
   const movie = await axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}`);
   return movie.data.results;
+  // console.log(movie);
 };
 export const searchMovie = async (q) => {
   const search = await axios.get(
