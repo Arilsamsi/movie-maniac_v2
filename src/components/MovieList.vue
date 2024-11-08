@@ -25,6 +25,53 @@
             <h3>{{ movie.title }}</h3>
             <p>{{ movie.release_date }}</p>
             <span class="rating">⭐ {{ movie.vote_average }}</span>
+            <p class="popularity">👁 {{ movie.popularity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="toprated">
+    <div class="movie-section">
+      <h2>Top Rated Movies</h2>
+      <div class="movie-list">
+        <div
+          class="movie-card"
+          v-for="movie in getMovieListTopRated"
+          :key="movie.id"
+        >
+          <img
+            :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+            :alt="movie.title"
+          />
+          <div class="movie-info">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.release_date }}</p>
+            <span class="rating">⭐ {{ movie.vote_average }}</span>
+            <p class="popularity">👁 {{ movie.popularity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="upcoming">
+    <div class="movie-section">
+      <h2>Upcoming Movies</h2>
+      <div class="movie-list">
+        <div
+          class="movie-card"
+          v-for="movie in getMovieListUpcoming"
+          :key="movie.id"
+        >
+          <img
+            :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+            :alt="movie.title"
+          />
+          <div class="movie-info">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.release_date }}</p>
+            <span class="rating">⭐ {{ movie.vote_average }}</span>
+            <p class="popularity">👁 {{ movie.popularity }}</p>
           </div>
         </div>
       </div>
@@ -33,13 +80,20 @@
 </template>
 
 <script>
-import { getMovieList, searchMovie } from "../api/api";
+import {
+  getMovieList,
+  getMovieListTopRated,
+  getMovieListUpcoming,
+  searchMovie,
+} from "../api/api";
 
 export default {
   name: "MovieList",
   data() {
     return {
       movies: [],
+      getMovieListTopRated: [],
+      getMovieListUpcoming: [],
       searchResults: [],
       query: "",
     };
@@ -51,6 +105,8 @@ export default {
   },
   async created() {
     this.movies = await getMovieList();
+    this.getMovieListTopRated = await getMovieListTopRated();
+    this.getMovieListUpcoming = await getMovieListUpcoming();
   },
   methods: {
     async handleSearch() {
@@ -190,5 +246,14 @@ body {
 
 .movie-list::-webkit-scrollbar-thumb:hover {
   background-color: #e50914;
+}
+.movie-card .popularity {
+  display: flex;
+  position: absolute;
+  top: 180px;
+  color: #ffb400;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: underline;
 }
 </style>
