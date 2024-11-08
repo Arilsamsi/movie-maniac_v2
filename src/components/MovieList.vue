@@ -250,7 +250,7 @@ body {
 .popularity {
   display: flex;
   /* position: fixed; */
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   color: #ffb400;
   font-weight: 500;
   font-size: 1rem;
