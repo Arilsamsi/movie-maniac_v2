@@ -190,6 +190,7 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #ffb400 transparent;
   width: 100%;
+  cursor: pointer;
 }
 
 .movie-card {
@@ -256,5 +257,11 @@ body {
   font-size: 1rem;
   text-decoration: underline;
   /* display: none; */
+}
+.popularity:hover {
+  color: #e50914;
+}
+.movie-info h3:hover {
+  color: #ffb400;
 }
 </style>
