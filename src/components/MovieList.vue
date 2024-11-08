@@ -247,13 +247,14 @@ body {
 .movie-list::-webkit-scrollbar-thumb:hover {
   background-color: #e50914;
 }
-.movie-card .popularity {
+.popularity {
   display: flex;
-  position: absolute;
-  top: 180px;
+  /* position: fixed; */
+  margin-bottom: 5px;
   color: #ffb400;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: underline;
+  /* display: none; */
 }
 </style>
