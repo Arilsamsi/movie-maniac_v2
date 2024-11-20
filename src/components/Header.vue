@@ -17,15 +17,25 @@
           <img
             src="../assets/logo.png"
             class="bi me-2"
-            width="40"
-            height="32"
+            width="90px"
+            height="70px"
           />
         </a>
-        <ul class="dropdown-menu text-small shadow text-white">
-          <li><a class="dropdown-item active" href="/">Home</a></li>
-          <li><a class="dropdown-item" href="#popular">Popular Movie</a></li>
-          <li><a class="dropdown-item" href="#toprated">Top Rated</a></li>
-          <li><a class="dropdown-item" href="#upcoming">Upcoming</a></li>
+        <ul class="dropdown-menu text-small shadow text-white bg-black">
+          <li>
+            <a class="dropdown-item active text-warning" href="/">Home</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-warning" href="#popular"
+              >Popular Movie</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item text-warning" href="#toprated">Top Rated</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-warning" href="#upcoming">Upcoming</a>
+          </li>
           <li><hr class="dropdown-divider" /></li>
         </ul>
       </div>
@@ -56,7 +66,10 @@ export default {
   font-size: 40px;
   cursor: pointer;
   position: absolute;
-  right: 4rem;
+  right: 1rem;
   color: #ffb400;
+}
+a:hover {
+  color: #e50914;
 }
 </style>
