@@ -101,6 +101,8 @@
     transform: translateY(-50%);
     /* z-index: 2; */
     margin-top: 50px;
+    padding-bottom: 230px;
+    justify-content: center;
   }
   
   .poster-container {
@@ -108,6 +110,7 @@
     max-width: 250px;
     display: flex;
     justify-content: center;
+    /* padding-top: 50px; */
   }
   
   .poster {
@@ -184,19 +187,14 @@
   }
   
   @media (max-width: 480px) {
-    .movie-detail{
-        /* height: 100vh; */
-        /* padding-top: 200px; */
-    }
     .banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* padding-top: 150px; */
-  }
-    .movie-banner{
-        position: relative;
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .movie-banner{
+        /* position: relative; */
+        /* width: 100%; */
         height: 100vh;
     }
     .movie-info {
@@ -224,6 +222,7 @@
   
     .rating {
       font-size: 1rem;
+      padding-bottom: 100px;
     }
   }
   </style>
