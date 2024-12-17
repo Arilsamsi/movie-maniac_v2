@@ -200,7 +200,8 @@
     .movie-info {
       padding: 10px;
       flex-direction: column;
-      padding-top: 350px;
+      padding-top: 400px;
+      /* padding-top: 100px; */
     }
   
     .movie-banner {
@@ -222,7 +223,7 @@
   
     .rating {
       font-size: 1rem;
-      padding-bottom: 100px;
+      padding-bottom: 120px;
     }
   }
   </style>
