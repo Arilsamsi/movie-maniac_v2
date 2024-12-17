@@ -26,15 +26,15 @@
             <a class="dropdown-item active text-warning" href="/">Home</a>
           </li>
           <li>
-            <a class="dropdown-item text-warning" href="#popular"
+            <a class="dropdown-item text-warning" href=""
               >Popular Movie</a
             >
           </li>
           <li>
-            <a class="dropdown-item text-warning" href="#toprated">Top Rated</a>
+            <a class="dropdown-item text-warning" href="">Top Rated</a>
           </li>
           <li>
-            <a class="dropdown-item text-warning" href="#upcoming">Upcoming</a>
+            <a class="dropdown-item text-warning" href="">Upcoming</a>
           </li>
           <li><hr class="dropdown-divider" /></li>
         </ul>

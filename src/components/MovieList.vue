@@ -138,7 +138,7 @@ body {
   box-sizing: border-box;
 }
 .movie-section {
-  padding: 140px 20px 20px;
+  padding: 110px 20px 20px;
   background-color: #1c1c1e;
   color: #ffffff;
   width: 100%;
@@ -200,13 +200,16 @@ body {
 }
 
 .movie-card {
+  display: flex;
   flex: 0 0 auto;
-  width: 150px;
+  width: 350px;
   background-color: #2a2a2d;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+ justify-content: start;
+ align-items: start;
 }
 
 .movie-card:hover {
@@ -214,14 +217,18 @@ body {
 }
 
 .movie-card img {
-  width: 100%;
-  height: 220px;
+  width: 150px;
+  height: 100%;
   object-fit: cover;
 }
 
 .movie-info {
   padding: 10px;
-  text-align: center;
+  /* text-align: center; */
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 20px;
 }
 
 .movie-info h3 {
@@ -229,11 +236,20 @@ body {
   font-weight: bold;
   margin: 8px 0 5px;
   color: #ffffff;
+  position: relative;
 }
 
 .rating {
   color: #ffb400;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  /* padding-top: 100px; */
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  
+}
+.rating:hover{
+  color: #e50914;
 }
 
 /* Custom Scrollbar */
@@ -260,7 +276,13 @@ body {
   color: #ffb400;
   font-weight: 500;
   font-size: 1rem;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  align-items: center;
+  justify-content: center;
+  /* padding-top: 50px; */
+  position: absolute;
+  bottom: 0;
+  right: 5px;
 }
 .popularity:hover {
   color: #e50914;
