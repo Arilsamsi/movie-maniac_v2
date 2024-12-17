@@ -185,6 +185,9 @@ export default {
   font-weight: bold;
   color: #ffb400;
 }
+.popularity{
+  color: #ffb400;
+}
 
 /* Trailer Section */
 .movie-trailer {
