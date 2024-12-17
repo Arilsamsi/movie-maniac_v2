@@ -20,6 +20,16 @@ export const getMovieDetails = async (id) => {
   }
 };
 
+export const getMovieTrailer = async (id) => {
+  const response = await axios.get(
+    `${baseUrl}/movie/${id}/videos?api_key=${apiKey}`
+  );
+  const trailers = response.data.results.filter(
+    (video) => video.type === "Trailer" && video.site === "YouTube"
+  );
+  return trailers.length ? trailers[0] : null; // Ambil trailer pertama jika ada
+};
+
 export const getMovieListTopRated = async () => {
   const movie = await axios.get(`${baseUrl}/movie/top_rated?api_key=${apiKey}`);
   return movie.data.results;
