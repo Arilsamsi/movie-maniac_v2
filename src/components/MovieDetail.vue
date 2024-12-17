@@ -8,28 +8,28 @@
           :alt="movieDetails.title"
           class="banner-image"
         />
-      </div>
-  
-      <!-- Movie Info Section -->
-      <div class="movie-info">
-        <div class="poster-container">
-          <img
-            v-if="movieDetails.poster_path"
-            :src="`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`"
-            alt="Movie Poster"
-            class="poster"
-          />
-        </div>
-  
-        <div class="movie-text">
-          <h1>{{ movieDetails.title }}</h1>
-          <p class="release-date">{{ movieDetails.release_date }}</p>
-          <p class="overview">{{ movieDetails.overview }}</p>
-          <div class="rating">
-            <span>⭐ {{ movieDetails.vote_average }}</span>
+        <div class="movie-info">
+          <div class="poster-container">
+            <img
+              v-if="movieDetails.poster_path"
+              :src="`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`"
+              alt="Movie Poster"
+              class="poster"
+            />
+          </div>
+    
+          <div class="movie-text">
+            <h1>{{ movieDetails.title }}</h1>
+            <p class="release-date">{{ movieDetails.release_date }}</p>
+            <p class="overview">{{ movieDetails.overview }}</p>
+            <div class="rating">
+              <span>⭐ {{ movieDetails.vote_average }}</span>
+            </div>
           </div>
         </div>
       </div>
+  
+      <!-- Movie Info Section -->
     </div>
   
     <div v-else class="loading">Loading...</div>
@@ -65,25 +65,20 @@
     color: #fff;
     background-color: #1e1e1e;
     position: relative;
-    /* padding-top: 500px; */
-    /* height: 100%; */
     padding-top: 110px;
-    /* margin-bottom: 500px; */
   }
   
   .movie-banner {
     position: relative;
     width: 100%;
     height: 84vh;
-    /* padding-top: 200px; */
-    /* margin-bottom: 500px; */
-    /* padding-bottom: 100px; */
   }
   
   .banner-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
   }
   
   .movie-info {
@@ -91,18 +86,16 @@
     flex-wrap: wrap;
     gap: 20px;
     position: absolute;
-    top: 50%;
     left: 0;
-    right: 0;
-    padding: 20px;
+    top: 50%;
+    padding: 60px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.1px);
     transform: translateY(-50%);
-    /* z-index: 2; */
-    margin-top: 50px;
-    padding-bottom: 230px;
     justify-content: center;
+    width: 100%;
+    height: 84vh;
   }
   
   .poster-container {
@@ -110,13 +103,16 @@
     max-width: 250px;
     display: flex;
     justify-content: center;
-    /* padding-top: 50px; */
+    /* width: 100%; */
+    height: 400px
   }
   
   .poster {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    /* object-fit: contain; */
+    /* height: 100%; */
   }
   
   .movie-text {
@@ -187,44 +183,38 @@
   }
   
   @media (max-width: 480px) {
-    .banner-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .movie-banner{
-        /* position: relative; */
-        /* width: 100%; */
-        height: 100vh;
-    }
-    .movie-info {
-      padding: 10px;
-      flex-direction: column;
-      padding-top: 400px;
-      /* padding-top: 100px; */
-    }
-  
     .movie-banner {
-      height: 40vh;
-    }
-  
-    .poster-container {
-      max-width: 150px;
-      margin-bottom: 15px;
-    }
-  
-    .poster {
-      width: 100%;
-    }
-  
-    .movie-text h1 {
-      font-size: 1.2rem;
-    }
-  
-    .rating {
-      font-size: 1rem;
-      padding-bottom: 120px;
-    }
+    position: relative;
+    width: 100%;
+    /* height: 84vh; */
   }
+  .movie-info {
+    padding: 10px;
+    flex-direction: column;
+    padding-top: 100px;
+    height: 100%;
+  }
+
+  .movie-banner {
+    height: 90vh;
+  }
+
+  .poster-container {
+    max-width: 150px;
+    margin-bottom: 15px;
+  }
+
+  .poster {
+    width: 100%;
+  }
+
+  .movie-text h1 {
+    font-size: 1.2rem;
+  }
+
+  .rating {
+    font-size: 1rem;
+  }
+}
   </style>
   
