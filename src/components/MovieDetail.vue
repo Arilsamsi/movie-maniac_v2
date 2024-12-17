@@ -89,7 +89,7 @@
     left: 0;
     top: 50%;
     padding: 60px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     backdrop-filter: blur(0.1px);
     transform: translateY(-50%);
