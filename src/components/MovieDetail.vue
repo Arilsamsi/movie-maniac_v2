@@ -1,5 +1,5 @@
 <template>
-  <div v-if="movieDetails" class="movie-detail">
+  <div v-if="movieDetails && movieDetails !== null" class="movie-detail">
     <!-- Banner Image -->
     <div class="movie-banner">
       <img
@@ -22,8 +22,25 @@
           <h1>{{ movieDetails.title }}</h1>
           <p class="release-date">{{ movieDetails.release_date }}</p>
           <p class="overview">{{ movieDetails.overview }}</p>
+          
+          
+          <!-- Duration -->
+          <div v-if="movieDetails.runtime" class="runtime">
+            <span>Durasi: {{ formatDuration(movieDetails.runtime) }}</span>
+          </div>
+          
+          <!-- Genre -->
+          <div v-if="movieDetails.genres && movieDetails.genres.length" class="genres">
+            <span>Genre: {{ movieDetails.genres.map(genre => genre.name).join(', ') }}</span>
+          </div>
+
+          <!-- Rating -->
           <div class="rating">
             <span>⭐ {{ movieDetails.vote_average }}</span>
+          </div>
+
+          <div class="popularity">
+            <span>👁️ {{ movieDetails.popularity }}</span>
           </div>
         </div>
       </div>
@@ -57,23 +74,31 @@ import { useRoute } from "vue-router";
 export default {
   name: "MovieDetail",
   setup() {
-    const movieDetails = ref(null);
+    const movieDetails = ref(null);  // Properti movieDetails didefinisikan sebagai null
     const movieTrailer = ref(null);
     const route = useRoute();
     const movieId = route.params.id;
 
-    // Fetch movie details and trailer on component mount
     onMounted(async () => {
       try {
-        movieDetails.value = await getMovieDetails(movieId);
-        movieTrailer.value = await getMovieTrailer(movieId);
-        console.log("Trailer Data:", movieTrailer.value); // Debugging untuk trailer
+        movieDetails.value = await getMovieDetails(movieId); // Mendapatkan detail film
+        movieTrailer.value = await getMovieTrailer(movieId); // Mendapatkan trailer film
       } catch (error) {
         console.error("Error fetching movie details or trailer:", error);
       }
     });
 
-    return { movieDetails, movieTrailer };
+    // Format durasi
+    const formatDuration = (runtime) => {
+      if (runtime && runtime > 0) {
+        const hours = Math.floor(runtime / 60);
+        const minutes = runtime % 60;
+        return `${hours}h ${minutes}m`;
+      }
+      return "N/A";
+    };
+
+    return { movieDetails, movieTrailer, formatDuration };
   },
 };
 </script>
@@ -212,6 +237,8 @@ export default {
   .movie-banner {
     height: 100vh;
   }
+
+  /* Place poster at the top for mobile view */
   .movie-info {
     padding: 10px;
     display: flex;
@@ -222,6 +249,10 @@ export default {
   .poster-container {
     max-width: 150px;
     margin-bottom: 15px;
+  }
+
+  .poster {
+    width: 100%;
   }
 
   .movie-text h1 {
@@ -236,4 +267,5 @@ export default {
     height: 200px;
   }
 }
+
 </style>

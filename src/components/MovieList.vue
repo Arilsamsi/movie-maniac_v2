@@ -25,6 +25,8 @@
           <div class="movie-info">
             <h3>{{ movie.title }}</h3>
             <p>{{ movie.release_date }}</p>
+            <p class="genres">Genre: {{ movie.genres }}</p>
+            <p class="runtimes">Durasi: {{ movie.runtime }}</p>
             <span class="rating">⭐ {{ movie.vote_average }}</span>
             <p class="popularity">👁 {{ movie.popularity }}</p>
           </div>
@@ -49,6 +51,8 @@
           <div class="movie-info">
             <h3>{{ movie.title }}</h3>
             <p>{{ movie.release_date }}</p>
+            <p class="genres">Genre: {{ movie.genres }}</p>
+            <p class="runtimes">Durasi: {{ movie.runtime }}</p>
             <span class="rating">⭐ {{ movie.vote_average }}</span>
             <p class="popularity">👁 {{ movie.popularity }}</p>
           </div>
@@ -73,6 +77,8 @@
           <div class="movie-info">
             <h3>{{ movie.title }}</h3>
             <p>{{ movie.release_date }}</p>
+            <p class="genres">Genre: {{ movie.genres }}</p>
+            <p class="runtimes">Durasi: {{ movie.runtime }}</p>
             <span class="rating">⭐ {{ movie.vote_average }}</span>
             <p class="popularity">👁 {{ movie.popularity }}</p>
           </div>
@@ -88,6 +94,7 @@ import {
   getMovieListTopRated,
   getMovieListUpcoming,
   searchMovie,
+  getMovieDetails,
 } from "../api/api";
 
 export default {
@@ -107,20 +114,52 @@ export default {
     },
   },
   async created() {
-    this.movies = await getMovieList();
-    this.getMovieListTopRated = await getMovieListTopRated();
-    this.getMovieListUpcoming = await getMovieListUpcoming();
+    this.movies = await this.fetchMovieDetails(await getMovieList());
+    this.getMovieListTopRated = await this.fetchMovieDetails(await getMovieListTopRated());
+    this.getMovieListUpcoming = await this.fetchMovieDetails(await getMovieListUpcoming());
   },
   methods: {
     async handleSearch() {
       if (this.query) {
-        this.searchResults = await searchMovie(this.query);
+        this.searchResults = await this.fetchMovieDetails(await searchMovie(this.query));
       } else {
         this.searchResults = [];
       }
     },
+    async fetchMovieDetails(movieList) {
+      const moviesWithDetails = await Promise.all(
+        movieList.map(async (movie) => {
+          try {
+            const details = await getMovieDetails(movie.id);
+            return {
+              ...movie,
+              runtime: this.formatDuration(details.runtime),
+              genres: details.genres
+                ? details.genres.map((genre) => genre.name).join(", ")
+                : "N/A",
+            };
+          } catch (error) {
+            console.error("Error fetching movie details:", error);
+            return {
+              ...movie,
+              runtime: "N/A",
+              genres: "N/A",
+            };
+          }
+        })
+      );
+      return moviesWithDetails;
+    },
+    formatDuration(runtime) {
+      if (runtime && runtime > 0) {
+        const hours = Math.floor(runtime / 60);
+        const minutes = runtime % 60;
+        return `${hours}h ${minutes}m`;
+      }
+      return "N/A";
+    },
     goToMovieDetail(id) {
-      this.$router.push(`/movie/${id}`); // Navigasi ke halaman detail
+      this.$router.push(`/movie/${id}`);
     },
   },
 };
@@ -208,8 +247,8 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
- justify-content: start;
- align-items: start;
+  justify-content: start;
+  align-items: start;
 }
 
 .movie-card:hover {
@@ -224,7 +263,6 @@ body {
 
 .movie-info {
   padding: 10px;
-  /* text-align: center; */
   height: 100%;
   width: 100%;
   position: relative;
@@ -242,13 +280,12 @@ body {
 .rating {
   color: #ffb400;
   font-size: 1rem;
-  /* padding-top: 100px; */
   text-align: center;
   position: absolute;
   bottom: 0;
-  
 }
-.rating:hover{
+
+.rating:hover {
   color: #e50914;
 }
 
@@ -270,24 +307,33 @@ body {
 .movie-list::-webkit-scrollbar-thumb:hover {
   background-color: #e50914;
 }
+
 .popularity {
   display: flex;
   margin-bottom: 2px;
   color: #ffb400;
   font-weight: 500;
   font-size: 1rem;
-  /* text-decoration: underline; */
   align-items: center;
   justify-content: center;
-  /* padding-top: 50px; */
   position: absolute;
   bottom: 0;
   right: 5px;
 }
+
 .popularity:hover {
   color: #e50914;
 }
+
 .movie-info h3:hover {
   color: #ffb400;
+}
+
+.genres,
+.runtimes {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+  margin-top: 5px;
+  text-align: left;
 }
 </style>
