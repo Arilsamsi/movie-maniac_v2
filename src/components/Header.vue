@@ -39,7 +39,7 @@
           <li><hr class="dropdown-divider" /></li>
         </ul>
       </div>
-      <div id="Logo">Maniac Movie</div>
+      <div id="Logo"><a href="/">Maniac Movie</a></div>
     </div>
   </header>
 </template>
@@ -61,13 +61,15 @@ export default {
 </script>
 
 <style scoped>
-#Logo {
+#Logo a {
   font-weight: bold;
   font-size: 40px;
   cursor: pointer;
   position: absolute;
   right: 1rem;
   color: #ffb400;
+  text-decoration: none;
+  top: 21px;
 }
 a:hover {
   color: #e50914;
