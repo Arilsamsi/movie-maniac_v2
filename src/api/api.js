@@ -9,6 +9,17 @@ export const getMovieList = async () => {
   // console.log(movie);
 };
 
+export const getMovieDetails = async (id) => {
+  const url = `${baseUrl}/movie/${id}?api_key=${apiKey}`;
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw new Error("Failed to fetch movie details");
+  }
+};
+
 export const getMovieListTopRated = async () => {
   const movie = await axios.get(`${baseUrl}/movie/top_rated?api_key=${apiKey}`);
   return movie.data.results;

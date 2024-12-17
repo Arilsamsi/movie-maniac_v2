@@ -16,6 +16,7 @@
           class="movie-card"
           v-for="movie in displayedMovies"
           :key="movie.id"
+          @click="goToMovieDetail(movie.id)"
         >
           <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
@@ -39,6 +40,7 @@
           class="movie-card"
           v-for="movie in getMovieListTopRated"
           :key="movie.id"
+          @click="goToMovieDetail(movie.id)"
         >
           <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
@@ -62,6 +64,7 @@
           class="movie-card"
           v-for="movie in getMovieListUpcoming"
           :key="movie.id"
+          @click="goToMovieDetail(movie.id)"
         >
           <img
             :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
@@ -115,6 +118,9 @@ export default {
       } else {
         this.searchResults = [];
       }
+    },
+    goToMovieDetail(id) {
+      this.$router.push(`/movie/${id}`); // Navigasi ke halaman detail
     },
   },
 };
@@ -250,13 +256,11 @@ body {
 }
 .popularity {
   display: flex;
-  /* position: fixed; */
   margin-bottom: 2px;
   color: #ffb400;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: underline;
-  /* display: none; */
 }
 .popularity:hover {
   color: #e50914;
