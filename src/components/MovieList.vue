@@ -177,7 +177,7 @@ body {
   box-sizing: border-box;
 }
 .movie-section {
-  padding: 110px 20px 20px;
+  padding: 100px 20px 20px;
   background-color: #1c1c1e;
   color: #ffffff;
   width: 100%;
@@ -241,7 +241,7 @@ body {
 .movie-card {
   display: flex;
   flex: 0 0 auto;
-  width: 350px;
+  width: 450px;
   background-color: #2a2a2d;
   border-radius: 8px;
   overflow: hidden;
@@ -249,6 +249,7 @@ body {
   transition: transform 0.3s ease;
   justify-content: start;
   align-items: start;
+  height: 200px;
 }
 
 .movie-card:hover {
@@ -256,9 +257,10 @@ body {
 }
 
 .movie-card img {
-  width: 150px;
+  width: 190px;
   height: 100%;
   object-fit: cover;
+  border-radius: 15px;
 }
 
 .movie-info {

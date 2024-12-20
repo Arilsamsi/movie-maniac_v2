@@ -7,6 +7,7 @@
         :src="`https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`"
         :alt="movieDetails.title"
         class="banner-image"
+        style="background-position: center;"
       />
       <!-- Movie Info -->
       <div class="movie-info">
@@ -109,20 +110,21 @@ export default {
   color: #fff;
   background-color: #1e1e1e;
   position: relative;
-  padding-top: 110px;
+  padding-top: 90px;
 }
 
 /* Banner Section */
 .movie-banner {
   position: relative;
   width: 100%;
-  height: 84vh;
+  height: 90vh;
 }
 
 .banner-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-position: center;
 }
 
 /* Movie Info Section */
@@ -140,7 +142,7 @@ export default {
     transform: translateY(-50%);
     justify-content: center;
     width: 100%;
-    height: 84vh;
+    height: 90vh;
   }
 
 .poster-container {
@@ -160,6 +162,7 @@ export default {
 .movie-text {
   flex: 2;
   max-width: 700px;
+  position: relative;
 }
 
 .movie-text h1 {
@@ -184,9 +187,13 @@ export default {
   font-size: 1.2rem;
   font-weight: bold;
   color: #ffb400;
+  position: absolute;
+  top: 330px;
 }
 .popularity{
   color: #ffb400;
+  position: absolute;
+  top: 360px;
 }
 
 /* Trailer Section */
@@ -220,6 +227,10 @@ export default {
 
 /* Responsiveness */
 @media (max-width: 768px) {
+  .movie-banner{
+    height: 100vh;
+    background-position: center;
+  }
   .movie-info {
     padding: 15px;
     flex-direction: column;
@@ -239,6 +250,7 @@ export default {
 @media (max-width: 480px) {
   .movie-banner {
     height: 100vh;
+    background-position: center;
   }
 
   /* Place poster at the top for mobile view */

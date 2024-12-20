@@ -1,7 +1,7 @@
 <template>
   <header
-    class="py-3 mb-3 border-bottom bg-dark position-fixed w-100"
-    style="z-index: 555"
+    class="py-2 mb-3 border-bottom bg-dark position-fixed w-100"
+    style="z-index: 555; position: relative;"
   >
     <div
       class="container-fluid d-grid gap-3 align-items-center"
@@ -69,7 +69,7 @@ export default {
   right: 1rem;
   color: #ffb400;
   text-decoration: none;
-  top: 21px;
+  top: 12px;
 }
 a:hover {
   color: #e50914;
