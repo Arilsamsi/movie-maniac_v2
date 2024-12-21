@@ -177,7 +177,7 @@ body {
   box-sizing: border-box;
 }
 .movie-section {
-  padding: 100px 20px 20px;
+  padding: 80px 20px 20px;
   background-color: #1c1c1e;
   color: #ffffff;
   width: 100%;

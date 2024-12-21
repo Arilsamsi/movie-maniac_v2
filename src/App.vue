@@ -1,13 +1,11 @@
 <script setup>
 import { RouterView } from "vue-router";
 import Header from "./components/Header.vue";
-import MovieList from "./components/MovieList.vue";
 </script>
 
 <template>
   <Header />
   <RouterView></RouterView>
-  <!-- <MovieList /> -->
 </template>
 
 <style scoped>

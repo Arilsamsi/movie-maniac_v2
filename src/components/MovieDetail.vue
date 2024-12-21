@@ -189,6 +189,9 @@ export default {
   color: #ffb400;
   position: absolute;
   top: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .popularity{
   color: #ffb400;
