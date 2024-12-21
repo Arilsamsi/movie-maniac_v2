@@ -286,8 +286,14 @@ export default {
     font-size: 1.2rem;
   }
 
-  .rating {
+  .rating,
+  .popularity
+  {
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 40%;
   }
 
   .trailer-iframe {
