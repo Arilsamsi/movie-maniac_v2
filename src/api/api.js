@@ -14,6 +14,7 @@ export const getMovieDetails = async (id) => {
   try {
     const response = await axios.get(url);
     return response.data;
+    // console.log(response);
   } catch (error) {
     console.error("Error fetching movie details:", error);
     throw new Error("Failed to fetch movie details");

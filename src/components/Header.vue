@@ -4,7 +4,7 @@
       <!-- Logo -->
       <div class="navbar-logo">
         <!-- <img src="../assets/logo.png" class="navbar-icon"> -->
-        Maniac Movie
+        <a href="/">Maniac Movie</a>
       </div>
 
       <!-- Hamburger Menu for Mobile -->
@@ -81,11 +81,15 @@ export default {
   font-size: 20px;
   font-weight: bold;
 }
+
 .navbar-icon {
   width: 30px; 
   height: 30px;
   margin-right: 8px; 
   vertical-align: middle;
+}.navbar-logo a{
+  text-decoration: none;
+  color: #ffb400;
 }
 .hamburger-menu {
   display: none;

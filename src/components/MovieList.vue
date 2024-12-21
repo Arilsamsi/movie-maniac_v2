@@ -1,6 +1,10 @@
 <template>
   <section id="popular">
-    <div class="movie-section">
+    <div
+      class="movie-section"
+      v-bind:style="{ backgroundImage: `url(${backgroundImage})` }"
+      style="background-position: center; background-repeat: no-repeat; background-size: cover;"
+    >
       <h1>Discover Your Movie</h1>
       <div class="search-bar">
         <input
@@ -32,10 +36,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="toprated">
-    <div class="movie-section">
       <h2>Top Rated Movies</h2>
       <div class="movie-list">
         <div
@@ -58,10 +58,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="upcoming">
-    <div class="movie-section">
       <h2>Upcoming Movies</h2>
       <div class="movie-list">
         <div
@@ -106,6 +102,7 @@ export default {
       getMovieListUpcoming: [],
       searchResults: [],
       query: "",
+      backgroundImage: "",
     };
   },
   computed: {
@@ -117,6 +114,13 @@ export default {
     this.movies = await this.fetchMovieDetails(await getMovieList());
     this.getMovieListTopRated = await this.fetchMovieDetails(await getMovieListTopRated());
     this.getMovieListUpcoming = await this.fetchMovieDetails(await getMovieListUpcoming());
+    
+    this.changeBackgroundImage();
+    
+    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000);
+  },
+  beforeDestroy() {
+    clearInterval(this.backgroundInterval); 
   },
   methods: {
     async handleSearch() {
@@ -161,6 +165,19 @@ export default {
     goToMovieDetail(id) {
       this.$router.push(`/movie/${id}`);
     },
+    changeBackgroundImage() {
+      // List of backdrop images
+      const backdropImages = [
+        "https://image.tmdb.org/t/p/original/l33oR0mnvf20avWyIMxW02EtQxn.jpg", 
+        "https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg",
+        "https://image.tmdb.org/t/p/original/tElnmtQ6yz1PjN1kePNl8yMSb59.jpg",
+        "https://image.tmdb.org/t/p/original/hT2yA8oaKVjXHjPWlmy08fdPz9p.jpg",
+        "https://image.tmdb.org/t/p/original/au3o84ub27qTZiMiEc9UYzN74V3.jpg",
+      ];
+
+      // Randomly select a backdrop image
+      this.backgroundImage = backdropImages[Math.floor(Math.random() * backdropImages.length)];
+    },
   },
 };
 </script>
@@ -178,9 +195,29 @@ body {
 }
 .movie-section {
   padding: 80px 20px 20px;
-  background-color: #1c1c1e;
+  /* background-color: #1c1c1e; */
   color: #ffffff;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  position: relative;
+}
+.movie-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Menambahkan layer gelap dengan transparansi */
+  z-index: 1; /* Memastikan overlay ada di atas gambar latar belakang */
+}
+
+.movie-section > * {
+  position: relative;
+  z-index: 2; /* Membuat konten di atas overlay */
 }
 .movie-section h1 {
   font-size: 2rem;
@@ -242,7 +279,7 @@ body {
   display: flex;
   flex: 0 0 auto;
   width: 450px;
-  background-color: #2a2a2d;
+  background-color: transparent;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -253,6 +290,7 @@ body {
 }
 
 .movie-card:hover {
+  background-color: #2a2a2d;
   transform: scale(1.05);
 }
 
@@ -337,5 +375,11 @@ body {
   color: #b3b3b3;
   margin-top: 5px;
   text-align: left;
+}
+
+@media (max-width: 480px) {
+  .movie-section{
+    background-position: center;
+  }
 }
 </style>
