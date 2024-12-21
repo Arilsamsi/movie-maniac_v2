@@ -49,7 +49,7 @@
 
     <!-- Trailer Section -->
     <div v-if="movieTrailer" class="movie-trailer">
-      <h2>Watch Trailer</h2>
+      <!-- <h2>Watch Trailer</h2> -->
       <iframe
         :src="`https://www.youtube.com/embed/${movieTrailer.key}`"
         title="Trailer"
@@ -110,7 +110,7 @@ export default {
   color: #fff;
   background-color: #1e1e1e;
   position: relative;
-  padding-top: 90px;
+  padding-top: 60px;
 }
 
 /* Banner Section */
@@ -201,9 +201,12 @@ export default {
 
 /* Trailer Section */
 .movie-trailer {
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: center;
   /* margin-bottom: 10px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .trailer-iframe {
@@ -213,6 +216,9 @@ export default {
   border: none;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .no-trailer {
@@ -247,6 +253,9 @@ export default {
 
   .trailer-iframe {
     height: 300px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
 }
 

@@ -29,10 +29,10 @@
 
       <!-- Menu Links -->
       <div :class="isOpen ? 'menu-links open' : 'menu-links'">
-        <a href="#" class="menu-link">Home</a>
-        <a href="#" class="menu-link">Popular</a>
-        <a href="#" class="menu-link">Top Rated</a>
-        <a href="#" class="menu-link">Upcoming</a>
+        <a href="/" class="menu-link">Home</a>
+        <a href="/" class="menu-link">Popular</a>
+        <a href="/" class="menu-link">Top Rated</a>
+        <a href="/" class="menu-link">Upcoming</a>
       </div>
     </div>
   </nav>
