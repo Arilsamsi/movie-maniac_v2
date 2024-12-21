@@ -61,7 +61,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -78,7 +78,7 @@ export default {
 }
 
 .navbar-logo {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
 }
 
