@@ -323,7 +323,7 @@ body {
   text-align: center;
   position: absolute;
   bottom: 0;
-  right: 89px;
+  right: 105px;
 }
 
 .rating:hover {
