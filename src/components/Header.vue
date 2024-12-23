@@ -3,8 +3,8 @@
     <div class="navbar-container">
       <!-- Logo -->
       <div class="navbar-logo">
-        <!-- <img src="../assets/logo.png" class="navbar-icon"> -->
-        <a href="/">Maniac Movie</a>
+        <a style="width: 100px; height: 100px;" href="/"><img src="../assets/logo.png" class="navbar-icon" width="100px" height="100px"></a>
+        <!-- <a href="/">Maniac Movie</a> -->
       </div>
 
       <!-- Hamburger Menu for Mobile -->
@@ -75,6 +75,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 50px;
 }
 
 .navbar-logo {
@@ -83,13 +84,16 @@ export default {
 }
 
 .navbar-icon {
-  width: 30px; 
-  height: 30px;
+  /* width: 30px;  */
+  width: 100px;
+  height: 100px;
   margin-right: 8px; 
   vertical-align: middle;
 }.navbar-logo a{
   text-decoration: none;
   color: #ffb400;
+  /* margin-bottom: 50px; */
+  /* padding-bottom: 50px; */
 }
 .hamburger-menu {
   display: none;
