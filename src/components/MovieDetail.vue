@@ -110,7 +110,7 @@ export default {
   color: #fff;
   background-color: #1e1e1e;
   position: relative;
-  padding-top: 80px;
+  /* padding-top: 80px; */
 }
 
 /* Banner Section */
@@ -144,6 +144,7 @@ export default {
     justify-content: center;
     width: 100%;
     height: 100vh;
+    padding-top: 150px;
   }
 
 .poster-container {
