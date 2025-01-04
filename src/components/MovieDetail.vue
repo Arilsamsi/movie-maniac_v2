@@ -110,14 +110,15 @@ export default {
   color: #fff;
   background-color: #1e1e1e;
   position: relative;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 /* Banner Section */
 .movie-banner {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
+  /* padding-top: 80px; */
 }
 
 .banner-image {
@@ -142,7 +143,7 @@ export default {
     transform: translateY(-50%);
     justify-content: center;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
   }
 
 .poster-container {

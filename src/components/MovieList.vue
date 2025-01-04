@@ -211,7 +211,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* Menambahkan layer gelap dengan transparansi */
+  background-color: rgba(0, 0, 0, 0.5); /* Menambahkan layer gelap dengan transparansi */
   z-index: 1; /* Memastikan overlay ada di atas gambar latar belakang */
 }
 
