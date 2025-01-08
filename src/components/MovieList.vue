@@ -117,7 +117,7 @@ export default {
     }
 
     // Set interval untuk mengganti background secara periodik
-    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000); // Ganti setiap 5 detik
+    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000); 
   },
   beforeDestroy() {
     clearInterval(this.backgroundInterval);
