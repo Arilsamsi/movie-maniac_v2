@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <h2>Top Rated Movies</h2>
+	<h2>Top Rated Movies</h2>
       <div class="movie-list">
         <div
           class="movie-card"
@@ -85,13 +85,8 @@
 </template>
 
 <script>
-import {
-  getMovieList,
-  getMovieListTopRated,
-  getMovieListUpcoming,
-  searchMovie,
-  getMovieDetails,
-} from "../api/api";
+import { getMovieList, searchMovie, getMovieDetails, getMovieListTopRated,
+  getMovieListUpcoming, } from "../api/api";
 
 export default {
   name: "MovieList",
@@ -103,6 +98,7 @@ export default {
       searchResults: [],
       query: "",
       backgroundImage: "",
+      currentMovieIndex: 0, // Indeks film populer saat ini
     };
   },
   computed: {
@@ -114,13 +110,17 @@ export default {
     this.movies = await this.fetchMovieDetails(await getMovieList());
     this.getMovieListTopRated = await this.fetchMovieDetails(await getMovieListTopRated());
     this.getMovieListUpcoming = await this.fetchMovieDetails(await getMovieListUpcoming());
-    
-    this.changeBackgroundImage();
-    
-    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000);
+
+    if (this.movies.length > 0) {
+      // Atur background pertama kali
+      this.backgroundImage = `https://image.tmdb.org/t/p/original${this.movies[0].backdrop_path}`;
+    }
+
+    // Set interval untuk mengganti background secara periodik
+    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000); // Ganti setiap 5 detik
   },
   beforeDestroy() {
-    clearInterval(this.backgroundInterval); 
+    clearInterval(this.backgroundInterval);
   },
   methods: {
     async handleSearch() {
@@ -166,23 +166,23 @@ export default {
       this.$router.push(`/movie/${id}`);
     },
     changeBackgroundImage() {
-      // List of backdrop images
-      const backdropImages = [
-        "https://image.tmdb.org/t/p/original/l33oR0mnvf20avWyIMxW02EtQxn.jpg", 
-        "https://image.tmdb.org/t/p/original/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg",
-        "https://image.tmdb.org/t/p/original/tElnmtQ6yz1PjN1kePNl8yMSb59.jpg",
-        "https://image.tmdb.org/t/p/original/hT2yA8oaKVjXHjPWlmy08fdPz9p.jpg",
-        "https://image.tmdb.org/t/p/original/au3o84ub27qTZiMiEc9UYzN74V3.jpg",
-      ];
+      if (this.movies.length > 0) {
+        // Pilih film berdasarkan indeks saat ini
+        const currentMovie = this.movies[this.currentMovieIndex];
+        if (currentMovie && currentMovie.backdrop_path) {
+          this.backgroundImage = `https://image.tmdb.org/t/p/original${currentMovie.backdrop_path}`;
+        }
 
-      // Randomly select a backdrop image
-      this.backgroundImage = backdropImages[Math.floor(Math.random() * backdropImages.length)];
+        // Perbarui indeks untuk film berikutnya
+        this.currentMovieIndex = (this.currentMovieIndex + 1) % this.movies.length;
+      }
     },
   },
 };
 </script>
 
 <style scoped>
+/* CSS Anda tetap sama seperti sebelumnya */
 html,
 body {
   overflow-x: hidden;
@@ -195,7 +195,6 @@ body {
 }
 .movie-section {
   padding: 80px 20px 20px;
-  /* background-color: #1c1c1e; */
   color: #ffffff;
   width: 100%;
   background-size: cover;
@@ -214,7 +213,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5); /* Menambahkan layer gelap dengan transparansi */
   z-index: 1; /* Memastikan overlay ada di atas gambar latar belakang */
 }
-
 .movie-section > * {
   position: relative;
   z-index: 2; /* Membuat konten di atas overlay */
