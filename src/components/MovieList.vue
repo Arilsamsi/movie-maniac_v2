@@ -1,7 +1,7 @@
 <template>
   <section id="popular">
     <div
-      class="movie-section"
+      class="movie-section fade-in"
       v-bind:style="{ backgroundImage: `url(${backgroundImage})` }"
       style="background-position: center; background-repeat: no-repeat; background-size: cover;"
     >
@@ -167,14 +167,23 @@ export default {
     },
     changeBackgroundImage() {
       if (this.movies.length > 0) {
-        // Pilih film berdasarkan indeks saat ini
         const currentMovie = this.movies[this.currentMovieIndex];
         if (currentMovie && currentMovie.backdrop_path) {
-          this.backgroundImage = `https://image.tmdb.org/t/p/original${currentMovie.backdrop_path}`;
+          const newBackgroundImage = `https://image.tmdb.org/t/p/original${currentMovie.backdrop_path}`;
+
+          // Trik untuk memulai ulang animasi
+          const section = document.getElementById("popular");
+          section.classList.remove("fade-in");
+          void section.offsetWidth; // Memicu reflow
+          section.classList.add("fade-in");
+
+          // Perbarui background image
+          this.backgroundImage = newBackgroundImage;
         }
 
         // Perbarui indeks untuk film berikutnya
-        this.currentMovieIndex = (this.currentMovieIndex + 1) % this.movies.length;
+        this.currentMovieIndex =
+          (this.currentMovieIndex + 1) % this.movies.length;
       }
     },
   },
@@ -202,6 +211,16 @@ body {
   background-repeat: no-repeat;
   height: 100%;
   position: relative;
+  opacity: 0;
+  animation: fade-in 1s ease-in-out forwards;
+}
+.movie-section.fade-in{
+  opacity: 1;
+}
+@keyframes fade-in {
+  to{
+    opacity: 1;
+  }
 }
 .movie-section::before {
   content: "";

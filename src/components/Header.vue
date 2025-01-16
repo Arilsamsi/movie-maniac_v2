@@ -30,9 +30,7 @@
       <!-- Menu Links -->
       <div class="center" :class="isOpen ? 'menu-links open' : 'menu-links'">
         <a href="/" class="menu-link">Home</a>
-        <a href="/" class="menu-link">Popular</a>
-        <a href="/" class="menu-link">Top Rated</a>
-        <a href="/" class="menu-link">Upcoming</a>
+        <a href="https://ahmadarilsamsi.vercel.app/#contact" class="menu-link">Contact</a>
         <form class="form">
           <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
