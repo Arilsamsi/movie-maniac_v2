@@ -7,9 +7,9 @@
     <div class="footer-content">
       <p>&copy; 2024 Ahmad Aril Samsi. All rights reserved.</p>
       <div class="social-links">
-        <a href="https://www.instagram.com/arilsamsi/" target="_blank" class="social-link">Instagram</a>
-        <a href="https://web.facebook.com/profile.php?id=100076206191055" target="_blank" class="social-link">Facebook</a>
-        <a href="https://www.tiktok.com/@deyissmyluvvv?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link">Tiktok</a>
+        <a href="https://www.instagram.com/arilsamsi/" target="_blank" class="social-link"><i class='bx bxl-instagram'></i></a>
+        <a href="https://github.com/Arilsamsi/" target="_blank" class="social-link"><i class='bx bxl-github'></i></a>
+        <a href="https://www.tiktok.com/@deyissmyluvvv?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link"><i class='bx bxl-tiktok' ></i></a>
       </div>
     </div>
   </footer>
@@ -58,5 +58,7 @@
 .social-link:focus {
   outline: none;
 }
-
+i{
+  font-size: 2rem;
+}
 </style>
