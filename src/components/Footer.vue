@@ -36,7 +36,7 @@
 .footer p {
   font-size: 1rem;
   margin: 5px 0;
-  color: #b3b3b3;
+  color: #ffb400;
 }
 
 .social-links {
