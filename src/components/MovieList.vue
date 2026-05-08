@@ -3,16 +3,63 @@
     <div
       class="movie-section fade-in"
       v-bind:style="{ backgroundImage: `url(${backgroundImage})` }"
-      style="background-position: center; background-repeat: no-repeat; background-size: cover;"
+      style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
     >
       <h1>Discover Your Movie</h1>
-      <div class="search-bar">
-        <input
+      <div class="search-bare">
+        <!-- <input
           type="text"
           v-model="query"
           @input="handleSearch"
           placeholder="Search for movies..."
-        />
+        /> -->
+        <form class="form">
+          <button>
+            <svg
+              width="17"
+              height="16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-labelledby="search"
+            >
+              <path
+                d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                stroke="currentColor"
+                stroke-width="1.333"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+          <input
+            class="input"
+            type="text"
+            v-model="query"
+            @input="handleSearch"
+            placeholder="Search..."
+          />
+          <button class="reset" type="reset">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </form>
       </div>
       <h2>Popular Movies</h2>
       <div class="movie-list">
@@ -36,7 +83,7 @@
           </div>
         </div>
       </div>
-	<h2>Top Rated Movies</h2>
+      <h2>Top Rated Movies</h2>
       <div class="movie-list">
         <div
           class="movie-card"
@@ -85,8 +132,13 @@
 </template>
 
 <script>
-import { getMovieList, searchMovie, getMovieDetails, getMovieListTopRated,
-  getMovieListUpcoming, } from "../api/api";
+import {
+  getMovieList,
+  searchMovie,
+  getMovieDetails,
+  getMovieListTopRated,
+  getMovieListUpcoming,
+} from "../api/api";
 
 export default {
   name: "MovieList",
@@ -108,8 +160,12 @@ export default {
   },
   async created() {
     this.movies = await this.fetchMovieDetails(await getMovieList());
-    this.getMovieListTopRated = await this.fetchMovieDetails(await getMovieListTopRated());
-    this.getMovieListUpcoming = await this.fetchMovieDetails(await getMovieListUpcoming());
+    this.getMovieListTopRated = await this.fetchMovieDetails(
+      await getMovieListTopRated()
+    );
+    this.getMovieListUpcoming = await this.fetchMovieDetails(
+      await getMovieListUpcoming()
+    );
 
     if (this.movies.length > 0) {
       // Atur background pertama kali
@@ -117,7 +173,7 @@ export default {
     }
 
     // Set interval untuk mengganti background secara periodik
-    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000); 
+    this.backgroundInterval = setInterval(this.changeBackgroundImage, 10000);
   },
   beforeDestroy() {
     clearInterval(this.backgroundInterval);
@@ -125,7 +181,9 @@ export default {
   methods: {
     async handleSearch() {
       if (this.query) {
-        this.searchResults = await this.fetchMovieDetails(await searchMovie(this.query));
+        this.searchResults = await this.fetchMovieDetails(
+          await searchMovie(this.query)
+        );
       } else {
         this.searchResults = [];
       }
@@ -214,11 +272,11 @@ body {
   opacity: 0;
   animation: fade-in 1s ease-in-out forwards;
 }
-.movie-section.fade-in{
+.movie-section.fade-in {
   opacity: 1;
 }
 @keyframes fade-in {
-  to{
+  to {
     opacity: 1;
   }
 }
@@ -229,7 +287,12 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Menambahkan layer gelap dengan transparansi */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Menambahkan layer gelap dengan transparansi */
   z-index: 1; /* Memastikan overlay ada di atas gambar latar belakang */
 }
 .movie-section > * {
@@ -395,9 +458,103 @@ body {
   text-align: left;
 }
 
+/* Search Bar Styling */
+.search-bare {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+
+.form {
+  /* display: none; */
+  --timing: 0.3s;
+  --border-height: 2px;
+  --input-bg: #1c1c1c;
+  --border-color: #e50914;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: 50%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.8em;
+  /* padding-left: 50%; */
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg, #fff);
+  border: 1px #ffb400 solid;
+}
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  color: #fff;
+}
+
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+
+.form:focus-within:before {
+  transform: scale(1);
+}
+
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+input:not(:placeholder-shown) ~ .reset {
+  opacity: 1;
+  visibility: visible;
+}
+
+.form svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
+.menu-link:hover {
+  color: #e50914;
+}
 @media (max-width: 480px) {
-  .movie-section{
+  .movie-section {
     background-position: center;
+  }
+  .search-bare .form {
+    width: 300px;
   }
 }
 </style>

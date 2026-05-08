@@ -7,7 +7,7 @@
         :src="`https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`"
         :alt="movieDetails.title"
         class="banner-image"
-        style="background-position: center;"
+        style="background-position: center"
       />
       <!-- Movie Info -->
       <div class="movie-info">
@@ -23,16 +23,23 @@
           <h1>{{ movieDetails.title }}</h1>
           <p class="release-date">{{ movieDetails.release_date }}</p>
           <p class="overview">{{ movieDetails.overview }}</p>
-          
-          
+
           <!-- Duration -->
           <div v-if="movieDetails.runtime" class="runtime">
             <span>Durasi: {{ formatDuration(movieDetails.runtime) }}</span>
           </div>
-          
+
           <!-- Genre -->
-          <div v-if="movieDetails.genres && movieDetails.genres.length" class="genres">
-            <span>Genre: {{ movieDetails.genres.map(genre => genre.name).join(', ') }}</span>
+          <div
+            v-if="movieDetails.genres && movieDetails.genres.length"
+            class="genres"
+          >
+            <span
+              >Genre:
+              {{
+                movieDetails.genres.map((genre) => genre.name).join(", ")
+              }}</span
+            >
           </div>
 
           <!-- Rating -->
@@ -75,7 +82,7 @@ import { useRoute } from "vue-router";
 export default {
   name: "MovieDetail",
   setup() {
-    const movieDetails = ref(null);  // Properti movieDetails didefinisikan sebagai null
+    const movieDetails = ref(null); // Properti movieDetails didefinisikan sebagai null
     const movieTrailer = ref(null);
     const route = useRoute();
     const movieId = route.params.id;
@@ -130,22 +137,22 @@ export default {
 
 /* Movie Info Section */
 .movie-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    padding: 60px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    backdrop-filter: blur(0.1px);
-    transform: translateY(-50%);
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    padding-top: 150px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  padding: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  backdrop-filter: blur(0.1px);
+  transform: translateY(-50%);
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding-top: 150px;
+}
 
 .poster-container {
   flex: 1;
@@ -159,8 +166,11 @@ export default {
   width: 100%;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
 }
-
+.poster:hover {
+  scale: 1.2rem;
+}
 .movie-text {
   flex: 2;
   max-width: 700px;
@@ -195,7 +205,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.popularity{
+.popularity {
   color: #ffb400;
   position: absolute;
   top: 360px;
@@ -238,7 +248,7 @@ export default {
 
 /* Responsiveness */
 @media (max-width: 768px) {
-  .movie-banner{
+  .movie-banner {
     height: 100vh;
     background-position: center;
   }
@@ -289,8 +299,7 @@ export default {
   }
 
   .rating,
-  .popularity
-  {
+  .popularity {
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -302,5 +311,4 @@ export default {
     height: 200px;
   }
 }
-
 </style>

@@ -1,9 +1,19 @@
 <template>
-  <nav class="navbar" style="position: fixed;" :class="{ 'navber': true, 'navbar-scrolled': isScrolled }">
+  <nav
+    class="navbar"
+    style="position: fixed"
+    :class="{ navber: true, 'navbar-scrolled': isScrolled }"
+  >
     <div class="navbar-container">
       <!-- Logo -->
       <div class="navbar-logo">
-        <a style="width: 100px; height: 100px;" href="/"><img src="../assets/logo.png" class="navbar-icon" width="100px" height="100px"></a>
+        <a style="width: 100px; height: 100px" href="/"
+          ><img
+            src="../assets/logo.png"
+            class="navbar-icon"
+            width="100px"
+            height="100px"
+        /></a>
         <!-- <a href="/">Maniac Movie</a> -->
       </div>
 
@@ -30,8 +40,10 @@
       <!-- Menu Links -->
       <div class="center" :class="isOpen ? 'menu-links open' : 'menu-links'">
         <a href="/" class="menu-link">Home</a>
-        <a href="https://ahmadarilsamsi.vercel.app/#contact" class="menu-link">Contact</a>
-        <form class="form">
+        <a href="https://ahmadarilsamsi.vercel.app/#contact" class="menu-link"
+          >Contact</a
+        >
+        <!-- <form class="form">
           <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -48,17 +60,17 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
-        </form>
+        </form> -->
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import { searchMovie } from '../api/api';
+import { searchMovie } from "../api/api";
 
 export default {
-  name: 'Header',
+  name: "Header",
   data() {
     return {
       isOpen: false,
@@ -75,7 +87,9 @@ export default {
   methods: {
     async handleSearch() {
       if (this.query) {
-        this.searchResults = await this.fetchMovieDetails(await searchMovie(this.query));
+        this.searchResults = await this.fetchMovieDetails(
+          await searchMovie(this.query)
+        );
       } else {
         this.searchResults = [];
       }
@@ -85,19 +99,19 @@ export default {
     },
     handleScroll() {
       this.isScrolled = window.scrollY > 0;
-    }
+    },
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   },
-  beforeDestroy(){
-    window.addEventListener('scroll', this.handleScroll);
-  }
+  beforeDestroy() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 
 <style>
-.center{
+.center {
   display: flex;
   align-items: center;
   justify-self: center;
@@ -142,9 +156,10 @@ export default {
   /* width: 30px;  */
   width: 100px;
   height: 100px;
-  margin-right: 8px; 
+  margin-right: 8px;
   vertical-align: middle;
-}.navbar-logo a{
+}
+.navbar-logo a {
   text-decoration: none;
   color: #ffb400;
   /* margin-bottom: 50px; */
@@ -209,7 +224,7 @@ export default {
   padding-inline: 0.8em;
   border-radius: var(--border-radius);
   transition: border-radius 0.5s ease;
-  background: var(--input-bg,#fff);
+  background: var(--input-bg, #fff);
   border: 1px #ffb400 solid;
 }
 .input {
